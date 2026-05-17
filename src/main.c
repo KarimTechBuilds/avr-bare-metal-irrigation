@@ -4,28 +4,37 @@
 #include <util/delay.h>
 
 int main(void) {
-  int dry_threshold = 625; // Set a threshold for dry soil
+  int dry_threshold = 500; // Set a threshold for dry soil
 
   ADCSRA |= (1 << ADEN) | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0); // Enable ADC and set prescaler to 128
   ADMUX = (1 << REFS0); // Use AVcc as reference voltage
-    
   DDRB |= (1 << PB0); // Set PB0 as output
 
   while(1){
+
     ADCSRA |= (1 << ADSC);
 
     while(ADCSRA & (1 << ADSC)){
-
+      
     }; // Wait for any ongoing conversion to finish
-    
+  
     int moisture_level= ADC; // Read the ADC value (moisture level)
     if (moisture_level < dry_threshold){
       PORTB |= (1 << PB0); // Turn on the water pump
+
+      _delay_ms(2000); // Run the pump for 2 seconds
+
+      PORTB &= ~(1 << PB0); // Turn off the water pump
+
+      _delay_ms(120000); // Wait for 2 minutes before the next reading
+
     } else {
       PORTB &= ~(1 << PB0); // Turn off the water pump
 
-    }
+      _delay_ms(10000); // Wait for 10 seconds before the next reading
 
+    }
+    
 
 
   }
