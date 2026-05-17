@@ -19,14 +19,16 @@ int main(void) {
     }; // Wait for any ongoing conversion to finish
   
     int moisture_level= ADC; // Read the ADC value (moisture level)
-    if (moisture_level < dry_threshold){
+    if (moisture_level > dry_threshold){
       PORTB |= (1 << PB0); // Turn on the water pump
 
       _delay_ms(2000); // Run the pump for 2 seconds
 
       PORTB &= ~(1 << PB0); // Turn off the water pump
 
-      _delay_ms(120000); // Wait for 2 minutes before the next reading
+      for (int i = 0; i < 60; i++) {
+        _delay_ms(1000); // Wait for 1 second before the next reading
+      }
 
     } else {
       PORTB &= ~(1 << PB0); // Turn off the water pump
