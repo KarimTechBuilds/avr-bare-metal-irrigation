@@ -6,9 +6,9 @@ A closed-loop, automated plant watering system built on an ATmega328P (Arduino U
 
 ## Current Status
 - [x] Hardware Architecture & Pinout defined
-- [ ] ADC configured for analog sensor reading
-- [ ] GPIO configured for relay control
-- [ ] Main control loop implemented
+- [x] ADC configured for analog sensor reading
+- [x] GPIO configured for relay control
+- [x] Main control loop implemented
 
 ## Hardware Architecture
 
