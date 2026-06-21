@@ -1,4 +1,4 @@
-<img src="project.jpg" width="600" alt="Irrigation System Hardware">
+<img src="project.jpg" width="300" alt="Irrigation System Hardware">
 
 # avr-bare-metal-irrigation
 Bare-metal C code for an automated plant waterer, utilizing direct register manipulation on an ATmega328P to control ADC sensors and GPIO relays.
