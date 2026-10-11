@@ -28,6 +28,10 @@ A closed-loop, automated plant watering system built on an ATmega328P (Arduino U
   * `GND` -> `GND`
   * `IN` (Signal) -> Digital Pin `8` (PORTB)
 
+### Engineering Notes: Load Control
+The pump is driven by a discrete 5V power rail, switched via a mechanical relay (Normally Open terminal). 
+* **Design decision:** While PWM (Pulse Width Modulation) was considered to drop the pump's operating voltage closer to its 4.5V ideal rating, the physical limitations of the mechanical relay (contact degradation/welding at high-frequency switching) precluded this. Instead, a simple binary `HIGH`/`LOW` actuation state is used to drive the pump directly at 5V for short, controlled bursts.
+
 ### Engineering Notes: Sensor Latency and Overshoot
 
 A resistive soil sensor does not respond to watering instantly — water needs time to
